@@ -5,6 +5,8 @@
 #include <gladus/binding.hpp>
 #include <gladus/state.hpp>
 #include <gladus/texture.hpp>
+#include <gladus/shader.hpp>
+#include <gladus/program.hpp>
 #include <iostream>
 
 int main()
