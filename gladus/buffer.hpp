@@ -13,10 +13,10 @@ struct buffer
 	GLenum target;
 	void* mapped_data;
 
-	buffer(): target(0), mapped_data(NULL) { glGenBuffers(1, &id); }
-	explicit buffer(GLenum target): target(target), mapped_data(NULL) { glGenBuffers(1, &id); }
+	buffer(): target(0), mapped_data(NULL) { glGenBuffers(1, &id); throw_on_opengl_error(); }
+	explicit buffer(GLenum target): target(target), mapped_data(NULL) { glGenBuffers(1, &id); throw_on_opengl_error(); }
 	explicit buffer(GLenum target, GLuint id): target(target), id(id), mapped_data(NULL) {}
-	~buffer() { if (id > 0) glDeleteBuffers(1, &id); }
+	~buffer() { if (id > 0) glDeleteBuffers(1, &id); throw_on_opengl_error(); }
 
 	operator GLuint() const { return id; }
 
@@ -43,12 +43,12 @@ struct buffer
 		}
 	}
 
-	void data(GLsizeiptr size, const GLvoid* data, GLenum usage) { binding<buffer> bound(*this); glBufferData(target, size, data, usage); }
-	void subdata(GLintptr offset, GLsizeiptr size, const GLvoid* data) { binding<buffer> bound(*this); glBufferSubData(target, offset, size, data); }
+	void data(GLsizeiptr size, const GLvoid* data, GLenum usage) { scoped_bind<buffer> bound(*this); glBufferData(target, size, data, usage); }
+	void subdata(GLintptr offset, GLsizeiptr size, const GLvoid* data) { scoped_bind<buffer> bound(*this); glBufferSubData(target, offset, size, data); }
 
 	void map(GLenum access) {
 		assert(!mapped_data && "buffer already mapped");
-		binding<buffer> bound(*this);
+		scoped_bind<buffer> bound(*this);
 		mapped_data = glMapBuffer(target, access);
 		if (!mapped_data) {
 			incase_opengl_error(err) {
@@ -60,7 +60,7 @@ struct buffer
 	}
 	void unmap() {
 		assert(mapped_data && "buffer not mapped");
-		binding<buffer> bound(*this);
+		scoped_bind<buffer> bound(*this);
 		if (!glUnmapBuffer(target)) {
 			incase_opengl_error(err) {
 				case GL_INVALID_ENUM: throw runtime_error("buffer: failed to unmap: 'target' is not one of the allowed values", err);

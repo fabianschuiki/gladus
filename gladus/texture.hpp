@@ -89,7 +89,7 @@ struct texture
 	void set_wrap_params(GLenum wrap_s, GLenum wrap_t, GLenum wrap_r)
 	{
 		state pipeline; pipeline.enable(target);
-		binding<texture> bound(*this);
+		scoped_bind<texture> bound(*this);
 		glTexParameteri(target, GL_TEXTURE_WRAP_S, wrap_s);
 		glTexParameteri(target, GL_TEXTURE_WRAP_T, wrap_t);
 		glTexParameteri(target, GL_TEXTURE_WRAP_R, wrap_r);
@@ -103,7 +103,7 @@ struct texture
 	void set_filter_params(GLenum min_filter, GLenum mag_filter)
 	{
 		state pipeline; pipeline.enable(target);
-		binding<texture> bound(*this);
+		scoped_bind<texture> bound(*this);
 		glTexParameteri(target, GL_TEXTURE_MIN_FILTER, min_filter);
 		glTexParameteri(target, GL_TEXTURE_MAG_FILTER, mag_filter);
 		incase_opengl_error(err) {
@@ -114,7 +114,7 @@ struct texture
 
 	void set_params(GLenum wrap = GL_REPEAT, GLenum filter = GL_LINEAR) { set_wrap_params(wrap); set_filter_params(filter); }
 
-	#define image_preamble state pipeline; pipeline.enable(target);	binding<texture> bound(*this); glPixelStorei(GL_UNPACK_ALIGNMENT, d.alignment);
+	#define image_preamble state pipeline; pipeline.enable(target);	scoped_bind<texture> bound(*this); glPixelStorei(GL_UNPACK_ALIGNMENT, d.alignment);
 	template <typename T> void image1d(const texture_image<T>& i, const texture_data& d) { image_preamble; glTexImage1D(target, i.level, i.internal_format, i.size, 0, d.format, d.type, d.data); throw_on_image_gl_error(); }
 	template <typename T> void image2d(const texture_image<T>& i, const texture_data& d) { image_preamble; glTexImage2D(target, i.level, i.internal_format, i.size.x, i.size.y, 0, d.format, d.type, d.data); throw_on_image_gl_error(); }
 	template <typename T> void image3d(const texture_image<T>& i, const texture_data& d) { image_preamble; glTexImage3D(target, i.level, i.internal_format, i.size.x, i.size.y, i.size.z, 0, d.format, d.type, d.data); throw_on_image_gl_error(); }
