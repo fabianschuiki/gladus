@@ -30,7 +30,7 @@ struct buffer
 			default: throw err;
 		}
 	}
-	void unbind()
+	void unbind() const
 	{
 		assert(target > 0);
 		clear_opengl_error();
@@ -72,5 +72,5 @@ struct buffer
 } // namespace gladus
 
 namespace gl {
-typedef gladus::buffer Buffer;
-} // namespace gl
+	typedef gladus::buffer Buffer;
+}
