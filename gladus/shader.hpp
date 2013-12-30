@@ -3,6 +3,7 @@
 #include "error.hpp"
 #include <string>
 #include <vector>
+#include <istream>
 #define GLADUS_HAS_SHADER
 
 namespace gladus {
@@ -15,6 +16,7 @@ struct shader_compile_result
 	bool success;
 	std::string info;
 
+	shader_compile_result() {}
 	shader_compile_result(bool success): success(success) {}
 	template <typename T> shader_compile_result(bool success, const T& info): success(success), info(info) {}
 	operator bool() const { return success; }
@@ -43,6 +45,11 @@ struct shader
 			case GL_INVALID_ENUM: throw runtime_error("shader: failed to assign source: 'type' is not one of the allowed values", err);
 			default: throw err;
 		}
+	}
+	void source(std::istream& is) const
+	{
+		std::vector<GLchar> buffer((std::istreambuf_iterator<GLchar>(is)), std::istreambuf_iterator<GLchar>());
+		source(&buffer[0], buffer.size());
 	}
 
 	shader_compile_result compile() const
