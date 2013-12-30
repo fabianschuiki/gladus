@@ -4,6 +4,7 @@
 #include <gladus/buffer.hpp>
 #include <gladus/binding.hpp>
 #include <gladus/state.hpp>
+#include <gladus/texture.hpp>
 #include <iostream>
 
 int main()
