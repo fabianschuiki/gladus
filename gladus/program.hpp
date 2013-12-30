@@ -36,45 +36,47 @@ struct program_uniform
 	void f(GLfloat v0, GLfloat v1, GLfloat v2) const { glUniform3f(location, v0, v1, v2); throw_on_program_opengl_error(); }
 	void f(GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) const { glUniform4f(location, v0, v1, v2, v3); throw_on_program_opengl_error(); }
 
-	void i(GLint v0) const { glUniform1i(location, v0); throw_on_program_opengl_error(); }
-	void i(GLint v0, GLint v1) const { glUniform2i(location, v0, v1); throw_on_program_opengl_error(); }
-	void i(GLint v0, GLint v1, GLint v2) const { glUniform3i(location, v0, v1, v2); throw_on_program_opengl_error(); }
-	void i(GLint v0, GLint v1, GLint v2, GLint v3) const { glUniform4i(location, v0, v1, v2, v3); throw_on_program_opengl_error(); }
-
-	void ui(GLuint v0) const { glUniform1ui(location, v0); throw_on_program_opengl_error(); }
-	void ui(GLuint v0, GLuint v1) const { glUniform2ui(location, v0, v1); throw_on_program_opengl_error(); }
-	void ui(GLuint v0, GLuint v1, GLuint v2) const { glUniform3ui(location, v0, v1, v2); throw_on_program_opengl_error(); }
-	void ui(GLuint v0, GLuint v1, GLuint v2, GLuint v3) const { glUniform4ui(location, v0, v1, v2, v3); throw_on_program_opengl_error(); }
-
 	void fv1(const GLfloat* v) const { glUniform1fv(location, 1, v); throw_on_program_opengl_error(); }
 	void fv2(const GLfloat* v) const { glUniform2fv(location, 1, v); throw_on_program_opengl_error(); }
 	void fv3(const GLfloat* v) const { glUniform3fv(location, 1, v); throw_on_program_opengl_error(); }
 	void fv4(const GLfloat* v) const { glUniform4fv(location, 1, v); throw_on_program_opengl_error(); }
-
-	void iv1(const GLint* v) const { glUniform1iv(location, 1, v); throw_on_program_opengl_error(); }
-	void iv2(const GLint* v) const { glUniform2iv(location, 1, v); throw_on_program_opengl_error(); }
-	void iv3(const GLint* v) const { glUniform3iv(location, 1, v); throw_on_program_opengl_error(); }
-	void iv4(const GLint* v) const { glUniform4iv(location, 1, v); throw_on_program_opengl_error(); }
-
-	void uiv1(const GLuint* v) const { glUniform1uiv(location, 1, v); throw_on_program_opengl_error(); }
-	void uiv2(const GLuint* v) const { glUniform2uiv(location, 1, v); throw_on_program_opengl_error(); }
-	void uiv3(const GLuint* v) const { glUniform3uiv(location, 1, v); throw_on_program_opengl_error(); }
-	void uiv4(const GLuint* v) const { glUniform4uiv(location, 1, v); throw_on_program_opengl_error(); }
 
 	void fv1(GLsizei n, const GLfloat* v) const { glUniform1fv(location, n, v); throw_on_program_opengl_error(); }
 	void fv2(GLsizei n, const GLfloat* v) const { glUniform2fv(location, n, v); throw_on_program_opengl_error(); }
 	void fv3(GLsizei n, const GLfloat* v) const { glUniform3fv(location, n, v); throw_on_program_opengl_error(); }
 	void fv4(GLsizei n, const GLfloat* v) const { glUniform4fv(location, n, v); throw_on_program_opengl_error(); }
 
+	void i(GLint v0) const { glUniform1i(location, v0); throw_on_program_opengl_error(); }
+	void i(GLint v0, GLint v1) const { glUniform2i(location, v0, v1); throw_on_program_opengl_error(); }
+	void i(GLint v0, GLint v1, GLint v2) const { glUniform3i(location, v0, v1, v2); throw_on_program_opengl_error(); }
+	void i(GLint v0, GLint v1, GLint v2, GLint v3) const { glUniform4i(location, v0, v1, v2, v3); throw_on_program_opengl_error(); }
+
+	void iv1(const GLint* v) const { glUniform1iv(location, 1, v); throw_on_program_opengl_error(); }
+	void iv2(const GLint* v) const { glUniform2iv(location, 1, v); throw_on_program_opengl_error(); }
+	void iv3(const GLint* v) const { glUniform3iv(location, 1, v); throw_on_program_opengl_error(); }
+	void iv4(const GLint* v) const { glUniform4iv(location, 1, v); throw_on_program_opengl_error(); }
+	
 	void iv1(GLsizei n, const GLint* v) const { glUniform1iv(location, n, v); throw_on_program_opengl_error(); }
 	void iv2(GLsizei n, const GLint* v) const { glUniform2iv(location, n, v); throw_on_program_opengl_error(); }
 	void iv3(GLsizei n, const GLint* v) const { glUniform3iv(location, n, v); throw_on_program_opengl_error(); }
 	void iv4(GLsizei n, const GLint* v) const { glUniform4iv(location, n, v); throw_on_program_opengl_error(); }
 
+	#ifdef GL_VERSION_3_0
+	void ui(GLuint v0) const { glUniform1ui(location, v0); throw_on_program_opengl_error(); }
+	void ui(GLuint v0, GLuint v1) const { glUniform2ui(location, v0, v1); throw_on_program_opengl_error(); }
+	void ui(GLuint v0, GLuint v1, GLuint v2) const { glUniform3ui(location, v0, v1, v2); throw_on_program_opengl_error(); }
+	void ui(GLuint v0, GLuint v1, GLuint v2, GLuint v3) const { glUniform4ui(location, v0, v1, v2, v3); throw_on_program_opengl_error(); }
+
+	void uiv1(const GLuint* v) const { glUniform1uiv(location, 1, v); throw_on_program_opengl_error(); }
+	void uiv2(const GLuint* v) const { glUniform2uiv(location, 1, v); throw_on_program_opengl_error(); }
+	void uiv3(const GLuint* v) const { glUniform3uiv(location, 1, v); throw_on_program_opengl_error(); }
+	void uiv4(const GLuint* v) const { glUniform4uiv(location, 1, v); throw_on_program_opengl_error(); }
+
 	void uiv1(GLsizei n, const GLuint* v) const { glUniform1uiv(location, n, v); throw_on_program_opengl_error(); }
 	void uiv2(GLsizei n, const GLuint* v) const { glUniform2uiv(location, n, v); throw_on_program_opengl_error(); }
 	void uiv3(GLsizei n, const GLuint* v) const { glUniform3uiv(location, n, v); throw_on_program_opengl_error(); }
 	void uiv4(GLsizei n, const GLuint* v) const { glUniform4uiv(location, n, v); throw_on_program_opengl_error(); }
+	#endif
 
 	void matrix2(const GLfloat* v, GLboolean transpose = false) const { glUniformMatrix2fv(location, 1, transpose, v); throw_on_program_opengl_error(); }
 	void matrix3(const GLfloat* v, GLboolean transpose = false) const { glUniformMatrix3fv(location, 1, transpose, v); throw_on_program_opengl_error(); }
@@ -117,9 +119,11 @@ struct program_uniform
 	void vectori(const gamma::vector3<GLint>& v) const { iv3(v); }
 	void vectori(const gamma::vector4<GLint>& v) const { iv4(v); }
 
+	#ifdef GL_VERSION_3_0
 	void vectorui(const gamma::vector2<GLuint>& v) const { uiv2(v); }
 	void vectorui(const gamma::vector3<GLuint>& v) const { uiv3(v); }
 	void vectorui(const gamma::vector4<GLuint>& v) const { uiv4(v); }
+	#endif
 	#endif
 
 	// // compatibility with gamma matrices
