@@ -11,9 +11,9 @@ namespace gladus {
 template <typename T> struct scoped_bind
 {
 	typedef T type;
-	T& object;
+	const T& object;
 
-	scoped_bind(T& object): object(object) { is_bound = false; bind(); }
+	scoped_bind(const T& object): object(object) { is_bound = false; bind(); }
 	~scoped_bind() { if (is_bound) unbind(); }
 
 	void bind() { assert(!is_bound); object.bind(); is_bound = true; }
@@ -29,9 +29,9 @@ private:
 template <typename T> struct scoped_use
 {
 	typedef T type;
-	T& object;
+	const T& object;
 
-	scoped_use(T& object): object(object) { is_used = false; use(); }
+	scoped_use(const T& object): object(object) { is_used = false; use(); }
 	~scoped_use() { if (is_used) unuse(); }
 
 	void use() { assert(!is_used); object.use(); is_used = true; }
