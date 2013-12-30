@@ -2,9 +2,11 @@
 #pragma once
 
 extern "C" {
-#ifdef __APPLE__
-	#include <OpenGL/gl.h>
+#if defined(__APPLE__)
+#	include <OpenGL/gl.h>
 #else
-	#include <GL/gl.h>
+#	define GL_GLEXT_PROTOTYPES 1
+#	include <GL/gl.h>
+#	include <GL/glext.h>
 #endif
 }
