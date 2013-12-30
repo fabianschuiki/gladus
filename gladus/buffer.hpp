@@ -14,9 +14,11 @@ struct buffer
 	void* mapped_data;
 
 	buffer(): target(0), mapped_data(NULL) { glGenBuffers(1, &id); }
-	buffer(GLenum target): target(target), mapped_data(NULL) { glGenBuffers(1, &id); }
-	buffer(GLenum target, GLuint id): target(target), id(id), mapped_data(NULL) {}
+	explicit buffer(GLenum target): target(target), mapped_data(NULL) { glGenBuffers(1, &id); }
+	explicit buffer(GLenum target, GLuint id): target(target), id(id), mapped_data(NULL) {}
 	~buffer() { if (id > 0) glDeleteBuffers(1, &id); }
+
+	operator GLuint() const { return id; }
 
 	void bind() const
 	{

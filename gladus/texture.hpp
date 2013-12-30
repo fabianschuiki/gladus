@@ -55,9 +55,11 @@ struct texture
 	GLenum target;
 
 	texture(): target(0) { glGenTextures(1, &id); }
-	texture(GLenum target): target(target) { glGenTextures(1, &id); }
-	texture(GLenum target, GLuint id): target(target), id(id) {}
+	explicit texture(GLenum target): target(target) { glGenTextures(1, &id); }
+	explicit texture(GLenum target, GLuint id): target(target), id(id) {}
 	~texture() { if (id > 0) glDeleteTextures(1, &id); }
+
+	operator GLuint() const { return id; }
 
 	void bind() const
 	{
