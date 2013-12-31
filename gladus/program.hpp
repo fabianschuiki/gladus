@@ -55,7 +55,7 @@ struct program_uniform
 	void iv2(const GLint* v) const { glUniform2iv(location, 1, v); throw_on_program_opengl_error(); }
 	void iv3(const GLint* v) const { glUniform3iv(location, 1, v); throw_on_program_opengl_error(); }
 	void iv4(const GLint* v) const { glUniform4iv(location, 1, v); throw_on_program_opengl_error(); }
-	
+
 	void iv1(GLsizei n, const GLint* v) const { glUniform1iv(location, n, v); throw_on_program_opengl_error(); }
 	void iv2(GLsizei n, const GLint* v) const { glUniform2iv(location, n, v); throw_on_program_opengl_error(); }
 	void iv3(GLsizei n, const GLint* v) const { glUniform3iv(location, n, v); throw_on_program_opengl_error(); }
@@ -128,9 +128,9 @@ struct program_uniform
 
 	// // compatibility with gamma matrices
 	#ifdef GAMMA_HAS_MATRIX
-	void matrix(const gamma:matrix2<GLfloat>& v) const { matrix2(v, false); }
-	void matrix(const gamma:matrix3<GLfloat>& v) const { matrix3(v, false); }
-	void matrix(const gamma:matrix4<GLfloat>& v) const { matrix4(v, false); }
+	void matrix(const gamma::matrix2<GLfloat>& v) const { matrix2(v, false); }
+	void matrix(const gamma::matrix3<GLfloat>& v) const { matrix3(v, false); }
+	void matrix(const gamma::matrix4<GLfloat>& v) const { matrix4(v, false); }
 	#endif
 };
 
