@@ -7,6 +7,7 @@
 #include <gladus/texture.hpp>
 #include <gladus/shader.hpp>
 #include <gladus/program.hpp>
+#include <gladus/framebuffer.hpp>
 #include <iostream>
 
 int main()
@@ -18,9 +19,6 @@ int main()
 		gladus::state state;
 		state.enable(GL_BLEND).enable(GL_LIGHTING);
 	}
-
-	gladus::program program;
-	program.uniform("mat_mvp").value(1.4,2,6);
 
 	return 0;
 }
