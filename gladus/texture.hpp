@@ -17,7 +17,8 @@ struct texture_data
 	GLint alignment;
 	const GLvoid* data;
 
-	texture_data(): format(0), type(0), alignment(4), data(NULL) {}
+	texture_data(): format(0), type(0), alignment(0), data(NULL) {}
+	texture_data(GLenum format, GLenum type): format(format), type(type), alignment(0), data(NULL) {}
 	template<typename T> texture_data(GLenum format, GLenum type, GLint alignment, const T& data): format(format), type(type), alignment(alignment), data(data) {}
 };
 
@@ -114,7 +115,7 @@ struct texture
 
 	void set_params(GLenum wrap = GL_REPEAT, GLenum filter = GL_LINEAR) { set_wrap_params(wrap); set_filter_params(filter); }
 
-	#define image_preamble state pipeline; pipeline.enable(target);	scoped_bind<texture> bound(*this); glPixelStorei(GL_UNPACK_ALIGNMENT, d.alignment);
+	#define image_preamble state pipeline; pipeline.enable(target);	scoped_bind<texture> bound(*this); if (d.data) glPixelStorei(GL_UNPACK_ALIGNMENT, d.alignment);
 	template <typename T> void image1d(const texture_image<T>& i, const texture_data& d) { image_preamble; glTexImage1D(target, i.level, i.internal_format, i.size, 0, d.format, d.type, d.data); throw_on_image_gl_error(); }
 	template <typename T> void image2d(const texture_image<T>& i, const texture_data& d) { image_preamble; glTexImage2D(target, i.level, i.internal_format, i.size.x, i.size.y, 0, d.format, d.type, d.data); throw_on_image_gl_error(); }
 	template <typename T> void image3d(const texture_image<T>& i, const texture_data& d) { image_preamble; glTexImage3D(target, i.level, i.internal_format, i.size.x, i.size.y, i.size.z, 0, d.format, d.type, d.data); throw_on_image_gl_error(); }
