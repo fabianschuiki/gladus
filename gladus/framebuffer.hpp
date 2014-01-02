@@ -83,7 +83,9 @@ struct framebuffer
 				case GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER:        message = "incomplete read buffer"; break;
 				case GL_FRAMEBUFFER_UNSUPPORTED:                   message = "framebuffer unsupported: combination of attachments is not supported on this hardware"; break;
 				case GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE:        message = "incomplete multisample"; break;
+				#ifdef GL_VERSION_3_2
 				case GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS:      message = "incomplete layer targets"; break;
+				#endif
 				default: message = "unknown framebuffer status"; break;
 			}
 			return framebuffer_validation_result(status, message);
