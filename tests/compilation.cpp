@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Fabian Schuiki */
+/* Copyright (c) 2013-2014 Fabian Schuiki */
 #include <gladus/opengl.hpp>
 #include <gladus/error.hpp>
 #include <gladus/buffer.hpp>
