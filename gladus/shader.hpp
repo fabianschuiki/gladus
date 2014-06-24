@@ -1,6 +1,6 @@
 /* Copyright (c) 2013 Fabian Schuiki */
 #pragma once
-#include "error.hpp"
+#include "gladus/error.hpp"
 #include <string>
 #include <vector>
 #include <istream>
@@ -8,9 +8,9 @@
 
 namespace gladus {
 
-/** Result of a shader compilation. If success is false, the shader's info log
- * is stored in the info member for the caller's convenience. The class has an
- * implicit cast to bool, allowing straightforward use in actual code. */
+/// Result of a shader compilation. If success is false, the shader's info log
+/// is stored in the info member for the caller's convenience. The class has an
+/// implicit cast to bool, allowing straightforward use in actual code.
 struct shader_compile_result
 {
 	bool success;
@@ -22,7 +22,7 @@ struct shader_compile_result
 	operator bool() const { return success; }
 };
 
-/** A shader, usually attached and linked in a gladus::program. */
+/// A shader, usually attached and linked in a gladus::program.
 struct shader
 {
 	GLuint id;

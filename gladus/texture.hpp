@@ -1,15 +1,15 @@
 /* Copyright (c) 2013 Fabian Schuiki */
 #pragma once
-#include "error.hpp"
-#include "state.hpp"
-#include "binding.hpp"
+#include "gladus/error.hpp"
+#include "gladus/state.hpp"
+#include "gladus/binding.hpp"
 #define GLADUS_HAS_TEXTURE
 
 namespace gladus {
 
-/** Description of a memory region containing texture data. This includes the
- * format of the channels, the data type of each channel, the alignment in the
- * memory region and the memory region itself. */
+/// Description of a memory region containing texture data. This includes the
+/// format of the channels, the data type of each channel, the alignment in the
+/// memory region and the memory region itself.
 struct texture_data
 {
 	GLenum format;
@@ -22,9 +22,9 @@ struct texture_data
 	template<typename T> texture_data(GLenum format, GLenum type, GLint alignment, const T& data): format(format), type(type), alignment(alignment), data(data) {}
 };
 
-/** Description of a texture image. This includes the MIP-level, internal
- * representation, and the size of the image. Note that the size is of generic
- * type to allow for different texture dimensions. */
+/// Description of a texture image. This includes the MIP-level, internal
+/// representation, and the size of the image. Note that the size is of generic
+/// type to allow for different texture dimensions.
 template<typename S> struct texture_image
 {
 	GLint level;
@@ -35,10 +35,10 @@ template<typename S> struct texture_image
 	texture_image(GLint level, GLint internal_format, const S& size): level(level), internal_format(internal_format), size(size) {}
 };
 
-/** Description of a subregion of a texture image. This includes the MIP-level,
- * offset within the original image and size of the region. Note that the
- * offset and size are of generic type to allow for different texture
- * dimensions. */
+/// Description of a subregion of a texture image. This includes the MIP-level,
+/// offset within the original image and size of the region. Note that the
+/// offset and size are of generic type to allow for different texture
+/// dimensions.
 template<typename S> struct texture_subimage
 {
 	GLint level;
@@ -49,7 +49,7 @@ template<typename S> struct texture_subimage
 	texture_subimage(GLint level, const S& offset, const S& size): level(level), offset(offset), size(size) {}
 };
 
-/** A texture of arbitrary dimension. */
+/// A texture of arbitrary dimension.
 struct texture
 {
 	GLuint id;

@@ -1,7 +1,7 @@
 /* Copyright (c) 2013 Fabian Schuiki */
 #pragma once
-#include "error.hpp"
-#include "binding.hpp"
+#include "gladus/error.hpp"
+#include "gladus/binding.hpp"
 #define GLADUS_HAS_FRAMEBUFFER
 
 namespace gladus {

@@ -1,15 +1,15 @@
 /* Copyright (c) 2013 Fabian Schuiki */
 #pragma once
-#include "error.hpp"
+#include "gladus/error.hpp"
 #include <map>
 #define GLADUS_HAS_PROGRAM
 
 namespace gladus {
 
-/** Result of a program linking operation. If success is false, the program's
- * info log is stored in the info member for the caller's convenience. The
- * class has an implicit cast to bool, allowing straightforward use in actual
- * code. */
+/// Result of a program linking operation. If success is false, the program's
+/// info log is stored in the info member for the caller's convenience. The
+/// class has an implicit cast to bool, allowing straightforward use in actual
+/// code.
 struct program_link_result
 {
 	bool success;
@@ -111,30 +111,30 @@ struct program_uniform
 
 	// compatibility with gamma vectors
 	#ifdef GAMMA_HAS_VECTOR
-	void vectorf(const gamma::vector2<GLfloat>& v) const { fv2(v); }
-	void vectorf(const gamma::vector3<GLfloat>& v) const { fv3(v); }
-	void vectorf(const gamma::vector4<GLfloat>& v) const { fv4(v); }
+	void vectorf(const gma::vector2<GLfloat>& v) const { fv2(v); }
+	void vectorf(const gma::vector3<GLfloat>& v) const { fv3(v); }
+	void vectorf(const gma::vector4<GLfloat>& v) const { fv4(v); }
 
-	void vectori(const gamma::vector2<GLint>& v) const { iv2(v); }
-	void vectori(const gamma::vector3<GLint>& v) const { iv3(v); }
-	void vectori(const gamma::vector4<GLint>& v) const { iv4(v); }
+	void vectori(const gma::vector2<GLint>& v) const { iv2(v); }
+	void vectori(const gma::vector3<GLint>& v) const { iv3(v); }
+	void vectori(const gma::vector4<GLint>& v) const { iv4(v); }
 
 	#ifdef GL_VERSION_3_0
-	void vectorui(const gamma::vector2<GLuint>& v) const { uiv2(v); }
-	void vectorui(const gamma::vector3<GLuint>& v) const { uiv3(v); }
-	void vectorui(const gamma::vector4<GLuint>& v) const { uiv4(v); }
+	void vectorui(const gma::vector2<GLuint>& v) const { uiv2(v); }
+	void vectorui(const gma::vector3<GLuint>& v) const { uiv3(v); }
+	void vectorui(const gma::vector4<GLuint>& v) const { uiv4(v); }
 	#endif
 	#endif
 
 	// // compatibility with gamma matrices
 	#ifdef GAMMA_HAS_MATRIX
-	void matrix(const gamma::matrix2<GLfloat>& v) const { matrix2(v, false); }
-	void matrix(const gamma::matrix3<GLfloat>& v) const { matrix3(v, false); }
-	void matrix(const gamma::matrix4<GLfloat>& v) const { matrix4(v, false); }
+	void matrix(const gma::matrix2<GLfloat>& v) const { matrix2(v, false); }
+	void matrix(const gma::matrix3<GLfloat>& v) const { matrix3(v, false); }
+	void matrix(const gma::matrix4<GLfloat>& v) const { matrix4(v, false); }
 	#endif
 };
 
-/* A program, i.e. a linked set of shaders. */
+/// A program, i.e. a linked set of shaders.
 struct program
 {
 	GLuint id;

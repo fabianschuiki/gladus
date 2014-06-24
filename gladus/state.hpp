@@ -5,10 +5,10 @@
 
 namespace gladus {
 
-/** This structure maintains changes to OpenGL's capabilities normally done via
- * glEnable() and glDisable(). Upon destruction, this class reverts all changes
- * that were made to the OpenGL capabilities. Hence this class provides an
- * exception-safe way of configuring OpenGL for your needs. */
+/// This structure maintains changes to OpenGL's capabilities normally done via
+/// glEnable() and glDisable(). Upon destruction, this class reverts all changes
+/// that were made to the OpenGL capabilities. Hence this class provides an
+/// exception-safe way of configuring OpenGL for your needs.
 struct state
 {
 	struct capability
