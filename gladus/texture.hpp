@@ -52,8 +52,8 @@ template<typename S> struct texture_subimage
 /// A texture of arbitrary dimension.
 struct texture
 {
-	GLuint id;
 	GLenum target;
+	GLuint id;
 
 	texture(): target(0) { glGenTextures(1, &id); }
 	explicit texture(GLenum target): target(target) { glGenTextures(1, &id); }

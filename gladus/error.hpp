@@ -30,8 +30,8 @@ struct opengl_error : public error
 
 struct runtime_error : public error
 {
-	opengl_error underlying_gl_error;
 	std::string message;
+	opengl_error underlying_gl_error;
 
 	runtime_error(): message("") {}
 	runtime_error(const char* msg): message(msg) {}
